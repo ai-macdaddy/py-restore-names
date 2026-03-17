@@ -3,7 +3,7 @@ from app import restore_names
 
 
 @pytest.fixture
-def users():
+def users() -> list[dict[str, str]]:
     return [
         {"full_name": "John Doe", "first_name": None},
         {"full_name": " Jane Smith", "first_name": None},
@@ -14,7 +14,7 @@ def users():
 
 
 @pytest.fixture
-def expected_result():
+def expected_result() -> list[dict[str, str]]:
     return [
         {"full_name": "John Doe", "first_name": "John"},
         {"full_name": " Jane Smith", "first_name": "Jane"},
@@ -24,6 +24,6 @@ def expected_result():
     ]
 
 
-def test_restore_names(users, expected_result) -> None:
+def test_restore_names(users: list[dict[str, str]], expected_result: list[dict[str, str]]) -> None:
     restore_names.restore_names(users)
     assert users == expected_result
